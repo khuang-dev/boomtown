@@ -55,7 +55,7 @@ module.exports = gql`
   input NewItemInput {
     title: String!
     description: String
-    tags: AssignedTag!
+    tags: [AssignedTag]!
   }
 
   type Query {

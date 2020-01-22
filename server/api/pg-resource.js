@@ -61,7 +61,7 @@ module.exports = postgres => {
        */
 
       const findUserQuery = {
-        text: "", // @TODO: Basic queries
+        text: "SELECT id, fullname, email, bio FROM users WHERE id = $1", // @TODO: Basic queries
         values: [id],
       };
 
@@ -73,9 +73,15 @@ module.exports = postgres => {
        *  Ex: If the user is not found from the DB throw 'User is not found'
        *  If the password is incorrect throw 'User or Password incorrect'
        */
+      try {
+        const user = await postgres.query(findUserQuery);
+        if (!user) throw "User is not found";
+        if (!password) throw "User or Password incorrect";
+        return user;
+      } catch (e) {
+        throw "User is not found";
+      }
 
-      const user = await postgres.query(findUserQuery);
-      return user;
       // -------------------------------
     },
     async getItems(idToOmit) {
@@ -92,7 +98,7 @@ module.exports = postgres => {
          *  to your query text using string interpolation
          */
 
-        text: ``,
+        text: `SELECT * FROM items WHERE ownerid != $1`,
         values: idToOmit ? [idToOmit] : [],
       });
       return items.rows;
@@ -103,7 +109,7 @@ module.exports = postgres => {
          *  @TODO:
          *  Get all Items for user using their id
          */
-        text: ``,
+        text: `SELECT * FROM items WHERE ownerid = $1`,
         values: [id],
       });
       return items.rows;
@@ -114,18 +120,18 @@ module.exports = postgres => {
          *  @TODO:
          *  Get all Items borrowed by user using their id
          */
-        text: ``,
+        text: `SELECT * FROM items WHERE borrowerid = $1`,
         values: [id],
       });
       return items.rows;
     },
     async getTags() {
-      const tags = await postgres.query(/* @TODO: Basic queries */);
+      const tags = await postgres.query(`SELECT * FROM tags`);
       return tags.rows;
     },
     async getTagsForItem(id) {
       const tagsQuery = {
-        text: ``, // @TODO: Advanced query Hint: use INNER JOIN
+        text: `SELECT * FROM tags INNER JOIN itemtags ON tags.id = itemid WHERE itemid = $1;`, // @TODO: Advanced query Hint: use INNER JOIN
         values: [id],
       };
 
