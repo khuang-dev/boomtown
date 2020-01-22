@@ -20,7 +20,7 @@ module.exports = gql`
     description: String!
     itemowner: User!
     tags: Tag
-    created: Date!
+    created: String!
     borrower: User
   }
 
@@ -66,6 +66,9 @@ module.exports = gql`
   }
 
   type Mutation {
-    addItem: NewItemInput!
+    addItem(item: NewItemInput!): Item
+    signup: Boolean
+    login: Boolean
+    logout: Boolean
   }
 `;
