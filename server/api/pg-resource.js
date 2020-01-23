@@ -165,8 +165,6 @@ module.exports = postgres => {
          */
         postgres.connect((err, client, done) => {
           try {
-
-
             // Begin postgres transaction
             client.query("BEGIN", async err => {
               const { title, description, tags } = item;
@@ -180,19 +178,12 @@ module.exports = postgres => {
               let itemid = insertNewItem.rows[0].id;
               // Generate tag relationships query (use the'tagsQueryString' helper function provided)
               const tagRelationshipQuery = {
-                text: `INSERT INTO itemtags(tagid,itemid) VALUES(${tagsQueryString(
-                  [...tags], 
-                  itemid, 
-                  results)}
-              ))`,
+                text: `INSERT INTO itemtags(tagid,itemid) VALUES
+                ( ${tagsQueryString([...tags], itemid, results)} )`,
                 values: tags.map()[tag => tag.id],
               };
               // Insert tags
               const insertTagRelationship = await postgres.query(tagRelationshipQuery);
-
-
-
-
 
               // Commit the entire transaction!
               client.query("COMMIT", err => {
