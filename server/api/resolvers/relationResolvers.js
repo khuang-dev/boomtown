@@ -3,26 +3,43 @@ const { ApolloError } = require("apollo-server");
 const relationResolvers = {
   User: {
 
-    items(parent, args, { pgResource }, info) {
-      return pgResource.getUserById(parent.id);
+    async items(parent, args, { pgResource }, info) {
+      try {
+      return await pgResource.getItemsForUser(parent.id);
+      } catch (error) {
+        throw error
+      }
     },
-    borrowed(parent, args, { pgResource }, info) {
-      return pgResource.getUserById(parent.id);
+    async borrowed(parent, args, { pgResource }, info) {
+      try {
+      return await pgResource.getBorrowedItemsForUsers(parent.id);
+    } catch (error) {
+      throw error
     }
+  }
   },
 
   Item: {
     async itemowner(parent, args, { pgResource }, info) {
+      try {
       return await pgResource.getUserById(parent.ownerid)
+      } catch (error) {
+        throw error
+      }
     },
-    async tags(parent, args, { pgResource }, info) {
-      return await pgResource.getTagsForItems(parent.id)
+    async tags({ itemid }, args, { pgResource }, info) {
+      try {
+      return await pgResource.getTagsForItem(itemid)
+      } catch (error) {
+        throw error
+      }
     },
     async borrower(parent, args, { pgResource }, info) {
-      /**
-       * or null in the case where the item has not been borrowed.
-       */
+      try {
       return await pgResource.getUserById(parent.borrowerid)
+      } catch (error) {
+        throw error
+      }
     }
   }
 };
