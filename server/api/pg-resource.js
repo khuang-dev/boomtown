@@ -147,17 +147,20 @@ module.exports = postgres => {
 
               const newItemQuery = {
                 text: `INSERT INTO items(title, description, ownerid) VALUES($1, $2, $3) RETURNING *`,
-                values: [title, description, ownerid],
+                values: [title, description, user],
               }
 
-              const insertNewItem = await postgres.query(newItemQuery);
-              let itemid = insertNewItem.rows[0].id;
+              const newItem = await postgres.query(newItemQuery);
+              let itemid = newItem.rows[0].id;
+              let results = [];
 
               const tagRelationshipQuery = {
                 text: `INSERT INTO itemtags(tagid,itemid) VALUES
-                ( ${tagsQueryString([...tags], itemid, results)} )`,
+                ${tagsQueryString([...tags], itemid, results)}`,
                 values: tags.map(tag => tag.id),
               };
+              console.log(tagsQueryString([...tags], itemid, results));
+
 
               const insertTagRelationship = await postgres.query(tagRelationshipQuery);
 
@@ -168,7 +171,7 @@ module.exports = postgres => {
                 }
                 // release the client back to the pool
                 done();
-                resolve(newItem.rows[0])
+                resolve(newItem.rows[0]);
               });
             });
           } catch (e) {

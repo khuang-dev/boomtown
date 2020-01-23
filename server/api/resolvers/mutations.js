@@ -113,7 +113,7 @@ const mutationResolvers = app => ({
       // -------------------------------
       if (!valid) throw "Invalid Password";
 
-      const token = generateToken(user, app.get("JWT_SECRET"));
+      // const token = generateToken(user, app.get("JWT_SECRET"));
 
       setCookie({
         tokenName: app.get("JWT_COOKIE_NAME"),
@@ -135,14 +135,18 @@ const mutationResolvers = app => ({
     return true;
   },
   async addItem(parent, args, context, info) {
+    try {
     const {title, description, tags} = args.item;
     const { pgResource } = context;
-    const user = await jwt.decode(context.token, app.get("JWT_SECRET"));
+    // const user = await jwt.decode(context.token, app.get("JWT_SECRET"));
     const newItem = await pgResource.saveNewItem({
       item: args.item,
-      user,
+      user: 1,
     });
     return newItem;
+  } catch (e) {
+    throw new ApolloError(e);
+  }
   },
 });
 module.exports = mutationResolvers;

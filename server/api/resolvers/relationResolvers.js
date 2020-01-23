@@ -28,6 +28,7 @@ const relationResolvers = {
       }
     },
     async tags(parent, args, { pgResource }, info) {
+      console.log(args);
       try {
         return await pgResource.getTagsForItem(parent.id)
       } catch (error) {
