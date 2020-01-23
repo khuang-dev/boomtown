@@ -5,40 +5,40 @@ const relationResolvers = {
 
     async items(parent, args, { pgResource }, info) {
       try {
-      return await pgResource.getItemsForUser(parent.id);
+        return await pgResource.getItemsForUser(parent.id);
       } catch (error) {
-        throw error
+        throw new ApolloError(error)
       }
     },
     async borrowed(parent, args, { pgResource }, info) {
       try {
-      return await pgResource.getBorrowedItemsForUsers(parent.id);
-    } catch (error) {
-      throw error
+        return await pgResource.getBorrowedItemsForUser(parent.id);
+      } catch (error) {
+        throw new ApolloError(error)
+      }
     }
-  }
   },
 
   Item: {
     async itemowner(parent, args, { pgResource }, info) {
       try {
-      return await pgResource.getUserById(parent.ownerid)
+        return await pgResource.getUserById(parent.ownerid)
       } catch (error) {
-        throw error
+        throw new ApolloError(error)
       }
     },
-    async tags({ itemid }, args, { pgResource }, info) {
+    async tags(parent, args, { pgResource }, info) {
       try {
-      return await pgResource.getTagsForItem(itemid)
+        return await pgResource.getTagsForItem(parent.id)
       } catch (error) {
-        throw error
+        throw new ApolloError(error)
       }
     },
     async borrower(parent, args, { pgResource }, info) {
       try {
-      return await pgResource.getUserById(parent.borrowerid)
+        return await pgResource.getUserById(parent.borrowerid)
       } catch (error) {
-        throw error
+        throw new ApolloError(error)
       }
     }
   }
