@@ -136,17 +136,17 @@ const mutationResolvers = app => ({
   },
   async addItem(parent, args, context, info) {
     try {
-    const {title, description, tags} = args.item;
-    const { pgResource } = context;
-    // const user = await jwt.decode(context.token, app.get("JWT_SECRET"));
-    const newItem = await pgResource.saveNewItem({
-      item: args.item,
-      user: 1,
-    });
-    return newItem;
-  } catch (e) {
-    throw new ApolloError(e);
-  }
+      const { item } = args;
+      const { pgResource } = context;
+      // const user = await jwt.decode(context.token, app.get("JWT_SECRET"));
+      const newItem = await pgResource.saveNewItem({
+        item: item,
+        user: 1,
+      });
+      return newItem;
+    } catch (e) {
+      throw new ApolloError(e);
+    }
   },
 });
 module.exports = mutationResolvers;

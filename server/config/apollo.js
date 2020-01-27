@@ -6,9 +6,6 @@ let resolvers = require("../api/resolvers");
 
 module.exports = ({ app, pgResource }) => {
   resolvers = resolvers(app);
-  /*
-   * https://www.apollographql.com/docs/apollo-server/v2/api/graphql-tools.html#makeExecutableSchema
-   */
   const schema = makeExecutableSchema({
     typeDefs, 
     resolvers
