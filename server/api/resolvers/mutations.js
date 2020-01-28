@@ -134,13 +134,13 @@ const mutationResolvers = app => ({
     context.req.res.clearCookie(app.get("JWT_COOKIE_NAME"));
     return true;
   },
-  async addItem(parent, args, context, info) {
+  async addItem(parent, { item }, context, info) {
     try {
-      const { item } = args;
+      // const { item } = args;
       const { pgResource } = context;
       // const user = await jwt.decode(context.token, app.get("JWT_SECRET"));
       const newItem = await pgResource.saveNewItem({
-        item: item,
+        item,
         user: 1,
       });
       return newItem;
