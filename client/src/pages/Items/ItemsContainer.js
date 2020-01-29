@@ -10,10 +10,10 @@ class ItemsContainer extends Component {
       <Query query={ALL_ITEMS_QUERY} variables={{ filter: 1 }}>
         {({ loading, error, data }) => {
           // if (loading) return <FullScreenLoader />;
-          if (loading) console.log(loading);
+          // if (loading) console.log(loading);
           if (error) return `Error! ${error.message}`;
-          console.log(data);
-          return <Items items={data} />
+          // console.log(data);
+          return <Items items={data.items} />
         }}
       </Query>
     )
