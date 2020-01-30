@@ -7,8 +7,10 @@ const ItemGrid = ({ items }) => {
     console.log(items)
 
     return (
-        <ItemCard items={items} />
-        // <p>hello world</p>
+        <div>
+            <ItemCard items={items} />
+            <p>itemsgrid</p>
+        </div>
     )
 };
 export default withStyles(styles)(ItemGrid);
