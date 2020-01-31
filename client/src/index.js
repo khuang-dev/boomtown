@@ -6,7 +6,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import client from './apollo';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppRoutes from './routes';
-
 import registerServiceWorker from "./registerServiceWorker";
 import theme from "./theme";
 

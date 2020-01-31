@@ -11,7 +11,9 @@ const useStyles = makeStyles(theme => ({
         flexWrap: "wrap",
         justifyContent: "center",
         backgroundColor: "#212121",
-        height: "100%"
+        height: "100%",
+        width: "100%",
+        margin: "0"
     },
     cardcontainer: {
         flexBasis: "30%"

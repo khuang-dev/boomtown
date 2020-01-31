@@ -7,7 +7,7 @@ let resolvers = require("../api/resolvers");
 module.exports = ({ app, pgResource }) => {
   resolvers = resolvers(app);
   const schema = makeExecutableSchema({
-    typeDefs, 
+    typeDefs,
     resolvers
   });
   // -------------------------------
@@ -36,6 +36,6 @@ module.exports = ({ app, pgResource }) => {
 
   apolloServer.applyMiddleware({
     app,
-    cors: app.set('CORS_CONFIG'),
+    cors: app.get('CORS_CONFIG'),
   });
 };

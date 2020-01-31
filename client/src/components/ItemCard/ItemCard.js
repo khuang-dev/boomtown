@@ -10,11 +10,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Avatar } from '@material-ui/core';
-
+import moment from 'moment';
+import Gravatar from "react-gravatar";
 
 const useStyles = makeStyles({
     card: {
-        minWidth: 425,
+        minWidth: 400,
         height: 500,
         margin: "20px 10px 0 10px",
         backgroundColor: "#fff",
@@ -44,7 +45,8 @@ const useStyles = makeStyles({
     avatar: {
         width: "50px",
         height: "50px",
-        marginRight: "20px"
+        marginRight: "20px",
+        borderRadius: "50px"
     },
     day: {
         color: "rgba(0, 0, 0, 0.5)",
@@ -65,26 +67,25 @@ const useStyles = makeStyles({
 const ItemCard = ({ item }) => {
     const classes = useStyles();
     console.log({ item })
+    let daysAgo = moment(item.created).fromNow()
     return (
         <Card className={classes.card}>
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
-                    image="https://image.shutterstock.com/z/stock-photo-natural-red-roses-background-614572562.jpg"
+                    image={item.imageurl || "https://image.shutterstock.com/z/stock-photo-natural-red-roses-background-614572562.jpg"}
                     title={item.title}
                 />
 
                 <CardContent className={classes.cardcontent}>
                     <div className={classes.usermeta}>
-                        <Avatar className={classes.avatar}>
-
-                        </Avatar>
+                        <Gravatar email={item.itemowner.email} size={100} rating="pg" default="monsterid" className={classes.avatar} />
                         <div>
                             <Typography className={classes.username}>
                                 {item.itemowner.fullname}
                             </Typography>
                             <Typography className={classes.day}>
-                                {item.created}
+                                {daysAgo}
                             </Typography>
                         </div>
                     </div>
