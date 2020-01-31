@@ -7,21 +7,21 @@ import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles(theme => ({
     gridcontainer: {
-        flexGrow: 1,
         display: "flex",
-        justifyContent: "space-around",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        backgroundColor: "#212121",
+        height: "100%"
     },
     cardcontainer: {
-        height: 140,
-        width: 100,
-        margin: "0 25px"
+        flexBasis: "30%"
     },
 }));
 const ItemGrid = ({ items }) => {
     console.log(items)
     const classes = useStyles();
     return (
-        <Grid className={classes.gridcontainer} spacing={2}>
+        <Grid container className={classes.gridcontainer} spacing={2}>
             <Grid item className={classes.gridcontainer} xs={12}>
                 {items.map(item => {
                     return (

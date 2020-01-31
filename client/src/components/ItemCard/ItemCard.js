@@ -12,18 +12,42 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
     card: {
-        maxWidth: 345,
-        backgroundColor: "black",
+        width: "95%",
+        height: 500,
+        margin: "10px 0",
+        backgroundColor: "#fff",
+        borderRadius: "0",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between"
+    },
+    cardcontent: {
+        background: "red",
     },
     media: {
-        height: 140,
+        height: "50%",
+        backgroundColor: "gray"
+    },
+    username: {
     },
     cardtitle: {
-        textTransform: "uppercase",
-        color: "white"
+        color: "#212121"
     },
     carddescription: {
-        textTransform: "uppercase",
+        color: "#212121"
+    },
+    itemmeta: {
+        marginTop: "30px"
+    },
+    tags: {
+        color: "rgba(0, 0, 0, 0.5)",
+        fontSize: "14px"
+    },
+    button: {
+        color: "#212121",
+        border: "1px solid rgba(0, 0, 0, 0.23)",
+        padding: "8px 24px",
+        margin: "0 0 12px 8px"
     }
 });
 
@@ -32,27 +56,35 @@ const ItemCard = ({ item }) => {
     console.log({ item })
     return (
         <Card className={classes.card}>
-            <CardActionArea>
-                <CardMedia
-                    className={classes.media}
-                    image="./"
-                    title="Contemplative Reptile"
-                />
-                <CardContent>
-                    <Typography className={classes.cardtitle} gutterBottom variant="h5" component="h2">
+
+            <CardMedia
+                className={classes.media}
+                image={item.imageurl}
+                title={item.title}
+            />
+
+            <CardContent className={classes.cardcontent}>
+                <div>
+                    <Typography className={classes.username}>
+                        {item.itemowner.fullname}
+                    </Typography>
+                </div>
+                <div className={classes.itemmeta}>
+                    <Typography className={classes.cardtitle}>
                         {item.title}
                     </Typography>
-                    <Typography className={classes.cardtitle} variant="body2" color="textSecondary" component="p">
+                    <Typography className={classes.tags}>
+                        {item.tags.map((tags => tags.title))}
+                    </Typography>
+                    <Typography className={classes.cardtitle}>
                         {item.description}
                     </Typography>
-                </CardContent>
-            </CardActionArea>
+                </div>
+            </CardContent>
+
             <CardActions>
-                <Button size="small" color="primary">
+                <Button className={classes.button} size="small" color="primary">
                     Borrow
-          </Button>
-                <Button size="small" color="primary">
-                    Learn More
           </Button>
             </CardActions>
         </Card>
