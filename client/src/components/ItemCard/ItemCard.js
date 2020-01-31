@@ -9,23 +9,22 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Avatar } from '@material-ui/core';
+
 
 const useStyles = makeStyles({
     card: {
-        width: "95%",
+        minWidth: 425,
         height: 500,
-        margin: "10px 0",
+        margin: "20px 10px 0 10px",
         backgroundColor: "#fff",
         borderRadius: "0",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between"
     },
     cardcontent: {
-        background: "red",
+        background: "#fff",
     },
     media: {
-        height: "50%",
+        height: 250,
         backgroundColor: "gray"
     },
     username: {
@@ -38,6 +37,18 @@ const useStyles = makeStyles({
     },
     itemmeta: {
         marginTop: "30px"
+    },
+    usermeta: {
+        display: "flex"
+    },
+    avatar: {
+        width: "50px",
+        height: "50px",
+        marginRight: "20px"
+    },
+    day: {
+        color: "rgba(0, 0, 0, 0.5)",
+        fontSize: "14px"
     },
     tags: {
         color: "rgba(0, 0, 0, 0.5)",
@@ -56,32 +67,40 @@ const ItemCard = ({ item }) => {
     console.log({ item })
     return (
         <Card className={classes.card}>
+            <CardActionArea>
+                <CardMedia
+                    className={classes.media}
+                    image="https://image.shutterstock.com/z/stock-photo-natural-red-roses-background-614572562.jpg"
+                    title={item.title}
+                />
 
-            <CardMedia
-                className={classes.media}
-                image={item.imageurl}
-                title={item.title}
-            />
+                <CardContent className={classes.cardcontent}>
+                    <div className={classes.usermeta}>
+                        <Avatar className={classes.avatar}>
 
-            <CardContent className={classes.cardcontent}>
-                <div>
-                    <Typography className={classes.username}>
-                        {item.itemowner.fullname}
-                    </Typography>
-                </div>
-                <div className={classes.itemmeta}>
-                    <Typography className={classes.cardtitle}>
-                        {item.title}
-                    </Typography>
-                    <Typography className={classes.tags}>
-                        {item.tags.map((tags => tags.title))}
-                    </Typography>
-                    <Typography className={classes.cardtitle}>
-                        {item.description}
-                    </Typography>
-                </div>
-            </CardContent>
-
+                        </Avatar>
+                        <div>
+                            <Typography className={classes.username}>
+                                {item.itemowner.fullname}
+                            </Typography>
+                            <Typography className={classes.day}>
+                                {item.created}
+                            </Typography>
+                        </div>
+                    </div>
+                    <div className={classes.itemmeta}>
+                        <Typography className={classes.cardtitle}>
+                            {item.title}
+                        </Typography>
+                        <Typography className={classes.tags}>
+                            {item.tags.map((tags => tags.title))}
+                        </Typography>
+                        <Typography className={classes.cardtitle}>
+                            {item.description}
+                        </Typography>
+                    </div>
+                </CardContent>
+            </CardActionArea>
             <CardActions>
                 <Button className={classes.button} size="small" color="primary">
                     Borrow
