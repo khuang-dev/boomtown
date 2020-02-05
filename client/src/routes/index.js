@@ -7,13 +7,12 @@ import Profile from '../pages/Profile';
 import NavBar from './NavBar';
 import PrivateRoute from "../components/PrivateRoute"
 import { ViewerContext } from "../context/ViewerProvider"
-// import FullScreenLoader from "../components/fullScreenLoader"
+import FullScreenLoader from "../components/FullScreenLoader"
 
 export default () => (
   <ViewerContext.Consumer>
     {({ viewer, loading }) => {
-      if (loading) return <div>Loading..</div>
-      // if (loading) return <FullScreenLoader />;
+      if (loading) return <FullScreenLoader />;
       if (!viewer) {
         return (<Switch>
           <Route exact path="/welcome" name="home" component={Home} />
