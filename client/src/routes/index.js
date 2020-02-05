@@ -5,20 +5,35 @@ import Home from '../pages/Home';
 import Share from '../pages/Share';
 import Profile from '../pages/Profile';
 import NavBar from './NavBar';
-
+import PrivateRoute from "../components/PrivateRoute"
+import { ViewerContext } from "../context/ViewerProvider"
+// import FullScreenLoader from "../components/fullScreenLoader"
 
 export default () => (
-  <Fragment>
-    <NavBar />
-    <Switch>
-      <Route exact path="/welcome" component={Home} />
-      <Route exact path="/items" component={Items} />
-      <Route exact path="/share" component={Share} />
-      <Route exact path="/profile" component={Profile} />
-      <Route exact path="/profile/:id" component={Profile} />
-      <Redirect from="*" to="/items" />
-    </Switch>
-  </Fragment>
+  <ViewerContext.Consumer>
+    {({ viewer, loading }) => {
+      if (loading) return <div>Loading..</div>
+      // if (loading) return <FullScreenLoader />;
+      if (!viewer) {
+        return (<Switch>
+          <Route exact path="/welcome" name="home" component={Home} />
+          <Redirect from="*" to="/welcome" />
+        </Switch>)
+      }
+      return (
+        <Fragment>
+          <NavBar />
+          <Switch>
+            <PrivateRoute exact path="/items" component={Items} />
+            <PrivateRoute exact path="/share" component={Share} />
+            <PrivateRoute exact path="/profile" component={Profile} />
+            <PrivateRoute exact path="/profile/:id" component={Profile} />
+            <Redirect from="*" to="/items" />
+          </Switch>
+        </Fragment>
+      )
+    }}
+  </ViewerContext.Consumer>
 );
       /**
 * Later, we'll add logic to send users to one set of routes if they're logged in,

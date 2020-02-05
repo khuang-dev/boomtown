@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -17,8 +16,10 @@ import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
-        position: "relative",
-        width: "100%"
+        position: "fixed",
+        width: "100%",
+        zIndex: 999,
+        top: 0,
     },
     menuButton: {
         marginRight: theme.spacing(2),

@@ -9,15 +9,15 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Avatar } from '@material-ui/core';
 import moment from 'moment';
 import Gravatar from "react-gravatar";
+// import { NavLink } from 'react-router-dom'
 
 const useStyles = makeStyles({
     card: {
         minWidth: 400,
         height: 500,
-        margin: "20px 10px 0 10px",
+        margin: "10px 10px 10px 10px",
         backgroundColor: "#fff",
         borderRadius: "0",
     },
@@ -66,23 +66,24 @@ const useStyles = makeStyles({
 
 const ItemCard = ({ item }) => {
     const classes = useStyles();
-    console.log({ item })
-    let daysAgo = moment(item.created).fromNow()
+    console.log(item )
+    let daysAgo = moment(item && item.created).fromNow()
     return (
         <Card className={classes.card}>
             <CardActionArea>
+                {/* <NavLink to="/profile/:id" /> */}
                 <CardMedia
                     className={classes.media}
-                    image={item.imageurl || "https://image.shutterstock.com/z/stock-photo-natural-red-roses-background-614572562.jpg"}
-                    title={item.title}
+                    image={item && item.imageurl || "https://image.shutterstock.com/z/stock-photo-natural-red-roses-background-614572562.jpg"}
+                    title={item && item.title}
                 />
 
                 <CardContent className={classes.cardcontent}>
                     <div className={classes.usermeta}>
-                        <Gravatar email={item.itemowner.email} size={100} rating="pg" default="monsterid" className={classes.avatar} />
+                        <Gravatar email={item.itemowner && item.itemowner.email} size={100} rating="pg" default="monsterid" className={classes.avatar} />
                         <div>
                             <Typography className={classes.username}>
-                                {item.itemowner.fullname}
+                                {item.itemowner && item.itemowner.fullname}
                             </Typography>
                             <Typography className={classes.day}>
                                 {daysAgo}
@@ -91,13 +92,13 @@ const ItemCard = ({ item }) => {
                     </div>
                     <div className={classes.itemmeta}>
                         <Typography className={classes.cardtitle}>
-                            {item.title}
+                            {item && item.title}
                         </Typography>
                         <Typography className={classes.tags}>
-                            {item.tags.map((tags => tags.title))}
+                            {item && item.tags.map((tags => tags.title))}
                         </Typography>
                         <Typography className={classes.cardtitle}>
-                            {item.description}
+                            {item && item.description}
                         </Typography>
                     </div>
                 </CardContent>

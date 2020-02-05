@@ -13,7 +13,8 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: "#212121",
         height: "100%",
         width: "100%",
-        margin: "0"
+        margin: "0",
+        paddingTop: "65px"
     },
     cardcontainer: {
         flexBasis: "30%"

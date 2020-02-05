@@ -8,19 +8,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import AppRoutes from './routes';
 import registerServiceWorker from "./registerServiceWorker";
 import theme from "./theme";
-
-/**
- * @TODO: Wrap your app with the Item Preview Provider
- *
- * import ItemPreviewProvider from './context/ItemPreviewProvider'
- *
- * Wrap this component around your app to access Item Preview Context API.
- */
+import ViewerProvider from './context/ViewerProvider'
 
 /**
  * @TODO: Wrap your app with the Viewer Context
  *
- * import ViewerProvider from './context/ViewerProvider'
  *
  * Below in your <App />, wrap the <ViewerProvider /> component around
  * the <BrowserRouter /> component so the router is aware of whether a
@@ -28,15 +20,20 @@ import theme from "./theme";
  */
 
 import "./index.css";
+import ItemPreviewProvider from "./context/ItemPreviewProvider";
 
 const App = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <ApolloProvider client={client}>
-        <Router>
-          <AppRoutes />
-        </Router>
+        <ItemPreviewProvider>
+          <ViewerProvider>
+            <Router>
+              <AppRoutes />
+            </Router>
+          </ViewerProvider>
+        </ItemPreviewProvider>
       </ApolloProvider>
     </MuiThemeProvider>
   );
