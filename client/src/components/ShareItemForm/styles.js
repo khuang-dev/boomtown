@@ -3,7 +3,15 @@ const styles = ({ theme }) => {
         shareformcontainer: {
             display: "flex",
             flexDirection: "column",
-            width: "450px"
+            justifyContent: "space-between",
+            width: "450px",
+        },
+        form: {
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            height: "500px"
+
         },
         title: {
             fontSize: "45px",
@@ -19,7 +27,7 @@ const styles = ({ theme }) => {
             border: "none",
             width: 150,
         },
-        
+
     }
 }
 

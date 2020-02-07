@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 import Gravatar from "react-gravatar";
-// import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const useStyles = makeStyles({
     card: {
@@ -66,42 +66,43 @@ const useStyles = makeStyles({
 
 const ItemCard = ({ item }) => {
     const classes = useStyles();
-    console.log(item )
+    console.log(item)
     let daysAgo = moment(item && item.created).fromNow()
     return (
         <Card className={classes.card}>
             <CardActionArea>
-                {/* <NavLink to="/profile/:id" /> */}
-                <CardMedia
-                    className={classes.media}
-                    image={item && item.imageurl || "https://image.shutterstock.com/z/stock-photo-natural-red-roses-background-614572562.jpg"}
-                    title={item && item.title}
-                />
+                <NavLink to={`/profile/${item.itemowner.id}`}>
+                    <CardMedia
+                        className={classes.media}
+                        image={item && item.imageurl || "https://image.shutterstock.com/z/stock-photo-natural-red-roses-background-614572562.jpg"}
+                        title={item && item.title}
+                    />
 
-                <CardContent className={classes.cardcontent}>
-                    <div className={classes.usermeta}>
-                        <Gravatar email={item.itemowner && item.itemowner.email} size={100} rating="pg" default="monsterid" className={classes.avatar} />
-                        <div>
-                            <Typography className={classes.username}>
-                                {item.itemowner && item.itemowner.fullname}
+                    <CardContent className={classes.cardcontent}>
+                        <div className={classes.usermeta}>
+                            <Gravatar email={item.itemowner && item.itemowner.email} size={100} rating="pg" default="monsterid" className={classes.avatar} />
+                            <div>
+                                <Typography className={classes.username}>
+                                    {item.itemowner && item.itemowner.fullname}
+                                </Typography>
+                                <Typography className={classes.day}>
+                                    {daysAgo}
+                                </Typography>
+                            </div>
+                        </div>
+                        <div className={classes.itemmeta}>
+                            <Typography className={classes.cardtitle}>
+                                {item && item.title}
                             </Typography>
-                            <Typography className={classes.day}>
-                                {daysAgo}
+                            <Typography className={classes.tags}>
+                                {item && item.tags.map((tags => tags.title))}
+                            </Typography>
+                            <Typography className={classes.cardtitle}>
+                                {item && item.description}
                             </Typography>
                         </div>
-                    </div>
-                    <div className={classes.itemmeta}>
-                        <Typography className={classes.cardtitle}>
-                            {item && item.title}
-                        </Typography>
-                        <Typography className={classes.tags}>
-                            {item && item.tags.map((tags => tags.title))}
-                        </Typography>
-                        <Typography className={classes.cardtitle}>
-                            {item && item.description}
-                        </Typography>
-                    </div>
-                </CardContent>
+                    </CardContent>
+                </NavLink>
             </CardActionArea>
             <CardActions>
                 <Button className={classes.button} size="small" color="primary">

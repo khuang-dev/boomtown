@@ -1,13 +1,12 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
+import ItemCard from "../../components/ItemCard"
 
 const Profile = ({ classes }) => {
   return (
     <div>
-      <p>
-        This is the profile page located at <code>/profile/:userId</code>.
-      </p>
+      {/* <ItemCard /> */}
     </div>
   );
 };

@@ -13,6 +13,7 @@ export default () => (
   <ViewerContext.Consumer>
     {({ viewer, loading }) => {
       if (loading) return <FullScreenLoader />;
+      console.log(viewer)
       if (!viewer) {
         return (<Switch>
           <Route exact path="/welcome" name="home" component={Home} />
