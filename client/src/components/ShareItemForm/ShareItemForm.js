@@ -15,12 +15,33 @@ import { InsertEmoticonOutlined } from '@material-ui/icons/'
 import { ItemPreviewContext } from '../../context/ItemPreviewProvider'
 import { ADD_ITEM_MUTATION } from '../../apollo/queries';
 import { Mutation } from 'react-apollo'
+import { withRouter } from 'react-router-dom'
+
 
 
 class ShareForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    }
+  }
+
   onSubmit = (values) => {
-    // console.log(values);
+    console.log(values);
   };
+  validate = (values) => {
+    console.log(values)
+    const errors = {}; //meta access here
+    if (!values.title) {
+      errors.title = 'Required*'
+    }
+    if (!values.description) {
+      errors.description = 'Required*'
+    }
+    return errors;
+  };
+
   generateTagsText = (tags, selected) => {
     return tags
       .map(t => (selected.indexOf(t.id) > -1 ? t.title : false))
@@ -54,6 +75,7 @@ class ShareForm extends Component {
               return (
                 <div className={classes.shareformcontainer}>
                   <Form
+                    validate={this.validate}
                     onSubmit={async values => {
                       console.log(values)
                       await addItem({
@@ -64,8 +86,9 @@ class ShareForm extends Component {
                           }
                         }
                       })
+                      this.props.history.push('/profile')
                     }}
-                    render={({ handleSubmit, pristine }) => {
+                    render={({ handleSubmit, pristine, submitting, invalid }) => {
                       return (
                         <form className={classes.form} onSubmit={handleSubmit}>
                           <FormSpy
@@ -80,10 +103,17 @@ class ShareForm extends Component {
                           <Typography className={classes.title}>Share. Borrow. Prosper.</Typography>
                           <Button fullWidth className={classes.button}>SHARE AN IMAGE</Button>
                           <Field name="title" render={({ input, meta }) => (
-                            <TextField {...input} fullWidth className={classes.textFields} placeholder="Name your item" />
+                            <React.Fragment>
+                              <TextField {...input} fullWidth className={classes.textFields} placeholder="Name your item" />
+                              {meta.error && meta.touched && <span>{meta.error}</span>}
+                            </React.Fragment>
+
                           )} />
                           <Field name="description" render={({ input, meta }) => (
-                            <TextField {...input} fullWidth className={classes.textFields} placeholder="Describe your item" />
+                            <React.Fragment>
+                              <TextField {...input} fullWidth className={classes.textFields} placeholder="Describe your item" />
+                              {meta.error && meta.touched && <span>{meta.error}</span>}
+                            </React.Fragment>
                           )} />
                           <label className={classes.tagIcons}>
                             <Field name="tags" component="input" type="checkbox" value="household items" />
@@ -114,8 +144,7 @@ class ShareForm extends Component {
                             Musical Instruments <MusicNoteOutlined />
                           </label>
                           <div>
-                            <Button type="submit" className={classes.share}>
-                              {/* disabled={pristine} */}
+                            <Button type="submit" className={classes.share} disabled={pristine || submitting || invalid}>
                               Share
                 </Button>
                           </div>
@@ -131,4 +160,4 @@ class ShareForm extends Component {
     )
   }
 }
-export default withStyles(styles)(ShareForm);
+export default withRouter(withStyles(styles)(ShareForm));

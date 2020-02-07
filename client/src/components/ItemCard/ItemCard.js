@@ -71,10 +71,11 @@ const ItemCard = ({ item }) => {
     return (
         <Card className={classes.card}>
             <CardActionArea>
-                <NavLink to={`/profile/${item.itemowner.id}`}>
+
+                <NavLink to={item.itemowner.id && `/profile/${item.itemowner.id}`}>
                     <CardMedia
                         className={classes.media}
-                        image={item ? item.imageurl : "https://image.shutterstock.com/z/stock-photo-natural-red-roses-background-614572562.jpg"}
+                        image={item.imageurl ? item.imageurl : "https://res.cloudinary.com/dhh19fozh/q_auto:good,f_auto,dpr_1.0/w_auto:breakpoints_85_850_10_10:750/jb7production-uploads/2017/07/dreamstatefestivallogo-2017.jpg"}
                         title={item && item.title}
                     />
 
@@ -94,9 +95,13 @@ const ItemCard = ({ item }) => {
                             <Typography className={classes.cardtitle}>
                                 {item && item.title}
                             </Typography>
-                            <Typography className={classes.tags}>
-                                {item && item.tags.map((tags => tags.title))}
-                            </Typography>
+                            {item && item.tags.map((tag) =>
+
+                                <Typography className={classes.tags}>
+                                    {tag.title}
+
+                                </Typography>
+                            )}
                             <Typography className={classes.cardtitle}>
                                 {item && item.description}
                             </Typography>
