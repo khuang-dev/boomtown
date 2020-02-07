@@ -28,7 +28,7 @@ class AccountForm extends Component {
   }
 
   render() {
-    const { classes, loginMutation, signupMutation } = this.props;
+    const { classes } = this.props;
 
     return (
       <Mutation mutation={LOGIN_MUTATION} refetchQueries={[{ query: VIEWER_QUERY }]}>

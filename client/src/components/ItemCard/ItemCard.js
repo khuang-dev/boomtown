@@ -74,7 +74,7 @@ const ItemCard = ({ item }) => {
                 <NavLink to={`/profile/${item.itemowner.id}`}>
                     <CardMedia
                         className={classes.media}
-                        image={item && item.imageurl || "https://image.shutterstock.com/z/stock-photo-natural-red-roses-background-614572562.jpg"}
+                        image={item ? item.imageurl : "https://image.shutterstock.com/z/stock-photo-natural-red-roses-background-614572562.jpg"}
                         title={item && item.title}
                     />
 
