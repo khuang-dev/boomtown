@@ -41,19 +41,17 @@ export const ALL_ITEMS_QUERY = gql`
 
 export const ALL_USER_ITEMS_QUERY = gql`
   query user($id: ID!) {
-    user(ID: $id){
+    user(id: $id){
     id
     bio
     email
-    fullname {
-      items {
-        ...ItemFields
+    fullname
+    items {
+      ...ItemFields
       }
       borrowed {
-        ...ItemFields
+      ...ItemFields
       }
-    }
-    ...ItemFields
   }
 }
   ${ItemFields}
