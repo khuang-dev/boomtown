@@ -86,7 +86,7 @@ class AccountForm extends Component {
                     </FormControl>
                     <FormControl fullWidth className={classes.formControl}>
                       <InputLabel htmlFor="password">Password</InputLabel>
-                      <Field name="password">
+                      <Field type="password" name="password">
                         {({ input, meta }) => (
                           <Input
                             id="password"

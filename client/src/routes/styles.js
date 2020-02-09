@@ -15,6 +15,7 @@ const styles = ({ theme }) => {
             flexGrow: 1,
         },
         sharebutton: {
+            marginRight: "15px",
             "&:hover": {
                 borderRadius: "30px",
             },

@@ -5,8 +5,8 @@ const initialState = {
     imageurl: 'http://via.placeholder.com/350x250?text=Please select an image',
     itemowner: {},
     created: new Date(),
-    title: 'Title preview',
-    description: 'Description preview',
+    title: 'preview of title',
+    description: 'preview of description',
     tags: [],
 }
 const ItemPreviewProvider = (props) => {

@@ -39,6 +39,9 @@ class ShareForm extends Component {
     if (!values.description) {
       errors.description = 'Required*'
     }
+    // if (values.tags.length === 0) {
+    //   errors.description = 'Required*'
+    // }
     return errors;
   };
 
@@ -104,45 +107,51 @@ class ShareForm extends Component {
                           <Button fullWidth className={classes.button}>SHARE AN IMAGE</Button>
                           <Field name="title" render={({ input, meta }) => (
                             <React.Fragment>
-                              <TextField {...input} fullWidth className={classes.textFields} placeholder="Name your item" />
-                              {meta.error && meta.touched && <span>{meta.error}</span>}
+                              <TextField {...input} fullWidth className={classes.nameinput} placeholder="Name your item" />
+                              <div className={classes.require}>
+                                {meta.error && meta.touched && <span>{meta.error}</span>}
+                              </div>
                             </React.Fragment>
 
                           )} />
                           <Field name="description" render={({ input, meta }) => (
                             <React.Fragment>
-                              <TextField {...input} fullWidth className={classes.textFields} placeholder="Describe your item" />
-                              {meta.error && meta.touched && <span>{meta.error}</span>}
+                              <TextField {...input} fullWidth className={classes.descriptioninput} placeholder="Describe your item" />
+                              <div className={classes.require}>
+                                {meta.error && meta.touched && <span>{meta.error}</span>}
+                              </div>
                             </React.Fragment>
                           )} />
-                          <label className={classes.tagIcons}>
-                            <Field name="tags" component="input" type="checkbox" value="household items" />
-                            Household Items <HomeOutlined />
+                          <div className={classes.tagscontainer}>
+                            <label className={classes.tagIcons}>
+                              <Field name="tags" component="input" type="checkbox" value="household items" />
+                              Household Items <HomeOutlined />
+                            </label>
+                            <label className={classes.tagIcons}>
+                              <Field name="tags" component="input" type="checkbox" value="tools" />
+                              Tools <BuildOutlined />
+                            </label>
+                            <label className={classes.tagIcons}>
+                              <Field name="tags" component="input" type="checkbox" value="electronics" />
+                              Electronics <DevicesOutlined />
+                            </label>
+                            <label className={classes.tagIcons}>
+                              <Field name="tags" component="input" type="checkbox" value="physical media" />
+                              Physical Media <BookOutlined />
+                            </label>
+                            <label className={classes.tagIcons}>
+                              <Field name="tags" component="input" type="checkbox" value="sporting goods" />
+                              Sporting Goods
                           </label>
-                          <label className={classes.tagIcons}>
-                            <Field name="tags" component="input" type="checkbox" value="tools" />
-                            Tools <BuildOutlined />
-                          </label>
-                          <label className={classes.tagIcons}>
-                            <Field name="tags" component="input" type="checkbox" value="electronics" />
-                            Electronics <DevicesOutlined />
-                          </label>
-                          <label className={classes.tagIcons}>
-                            <Field name="tags" component="input" type="checkbox" value="physical media" />
-                            Physical Media <BookOutlined />
-                          </label>
-                          <label className={classes.tagIcons}>
-                            <Field name="tags" component="input" type="checkbox" value="sporting goods" />
-                            Sporting Goods
-                          </label>
-                          <label className={classes.tagIcons}>
-                            <Field name="tags" component="input" type="checkbox" value="recreational equipment" />
-                            Recreational Equipment <InsertEmoticonOutlined />
-                          </label>
-                          <label className={classes.tagIcons}>
-                            <Field name="tags" component="input" type="checkbox" value="musical instruments" />
-                            Musical Instruments <MusicNoteOutlined />
-                          </label>
+                            <label className={classes.tagIcons}>
+                              <Field name="tags" component="input" type="checkbox" value="recreational equipment" />
+                              Recreational Equipment <InsertEmoticonOutlined />
+                            </label>
+                            <label className={classes.tagIcons}>
+                              <Field name="tags" component="input" type="checkbox" value="musical instruments" />
+                              Musical Instruments <MusicNoteOutlined />
+                            </label>
+                          </div>
                           <div>
                             <Button type="submit" className={classes.share} disabled={pristine || submitting || invalid}>
                               Share

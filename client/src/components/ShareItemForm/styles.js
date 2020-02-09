@@ -6,17 +6,24 @@ const styles = ({ theme }) => {
             justifyContent: "space-between",
             width: "450px",
         },
+        nameinput: {
+            marginTop: "30px",
+        },
+        descriptioninput: {
+            marginTop: "15px",
+        },
         form: {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
             height: "500px"
-
         },
         title: {
             fontSize: "45px",
             lineHeight: 1,
-            fontWeight: "bold"
+            fontWeight: "bold",
+            marginTop: "10px",
+            marginBottom: "50px"
         },
         button: {
             background: "#f9a825",
@@ -27,7 +34,13 @@ const styles = ({ theme }) => {
             border: "none",
             width: 150,
         },
-
+        tagscontainer: {
+            margin: "20px 0"
+        },
+        require: {
+            height: "20px",
+            color: "#f9a825"
+        }
     }
 }
 

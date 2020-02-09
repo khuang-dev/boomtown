@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 import Gravatar from "react-gravatar";
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
     card: {
@@ -54,7 +54,10 @@ const useStyles = makeStyles({
     },
     tags: {
         color: "rgba(0, 0, 0, 0.5)",
-        fontSize: "14px"
+        fontSize: "14px",
+    },
+    tagscontainer: {
+        display: "flex",
     },
     button: {
         color: "#212121",
@@ -72,7 +75,7 @@ const ItemCard = ({ item }) => {
         <Card className={classes.card}>
             <CardActionArea>
 
-                <NavLink to={item.itemowner.id && `/profile/${item.itemowner.id}`}>
+                <Link to={item.itemowner.id && `/profile/${item.itemowner.id}`}>
                     <CardMedia
                         className={classes.media}
                         image={item.imageurl ? item.imageurl : "https://res.cloudinary.com/dhh19fozh/q_auto:good,f_auto,dpr_1.0/w_auto:breakpoints_85_850_10_10:750/jb7production-uploads/2017/07/dreamstatefestivallogo-2017.jpg"}
@@ -95,19 +98,19 @@ const ItemCard = ({ item }) => {
                             <Typography className={classes.cardtitle}>
                                 {item && item.title}
                             </Typography>
-                            {item && item.tags.map((tag) =>
-
-                                <Typography className={classes.tags}>
-                                    {tag.title}
-
-                                </Typography>
-                            )}
+                            <div className={classes.tagscontainer}>
+                                {item && item.tags.map((tag) =>
+                                    <Typography key={tag.id} className={classes.tags}>
+                                        {tag.title}
+                                    </Typography>
+                                )}
+                            </div>
                             <Typography className={classes.cardtitle}>
                                 {item && item.description}
                             </Typography>
                         </div>
                     </CardContent>
-                </NavLink>
+                </Link>
             </CardActionArea>
             <CardActions>
                 <Button className={classes.button} size="small" color="primary">
