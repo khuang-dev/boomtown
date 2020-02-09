@@ -30,13 +30,14 @@ const styles = ({ theme }) => {
         logo: {
             width: "40px"
         },
-        profile: {
-            color: "black"
+        menuitem: {
+            color: "black",
+            width: 150,
+            display: "flex",
+            justifyContent: "flex-start"
         },
-        logout: {
-            background: "none",
-            border: "none",
-            fontSize: "16px"
+        menuitemicon: {
+            marginRight: 30
         },
         dropicon: {
             margin: "0 25px 0 100px"

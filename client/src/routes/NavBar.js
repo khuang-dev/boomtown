@@ -62,18 +62,19 @@ const NavBar = ({ classes, history }) => {
                                     className={classes.dropmenu}
                                 >
                                     <MenuItem onClick={handleClose} >
-                                        <NavLink className={classes.profile} to="/profile" activeClassName="selected">
-                                            <FingerprintIcon />
+                                        <NavLink className={classes.menuitem} to="/profile" activeClassName="selected">
+                                            <FingerprintIcon className={classes.menuitemicon} />
                                             <Typography>
-                                                Profile
+                                                Your Profile
                                         </Typography>
                                         </NavLink>
                                     </MenuItem>
                                     <MenuItem onClick={handleClose}>
-                                        <button className={classes.logout} onClick={() => {
+                                        <NavLink className={classes.menuitem} onClick={() => {
                                             logout();
-                                        }}><PowerSettingsNewIcon />Logout
-                                </button>
+                                        }}><PowerSettingsNewIcon className={classes.menuitemicon} />
+                                            <Typography>Sign Out</Typography>
+                                        </NavLink>
                                     </MenuItem>
                                 </Menu>
 
