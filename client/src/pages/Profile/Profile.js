@@ -2,8 +2,6 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import ItemCard from "../../components/ItemCard"
-import ItemGrid from "../../components/ItemGrid"
-
 import ProfileCard from "../../components/ProfileCard"
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core/';
@@ -15,17 +13,21 @@ const Profile = ({ data, classes }) => {
   return (
     <div>
       <ProfileCard user={data} />
-      <Typography>
+      <Typography className={classes.shareditemtitle}>
         Shared Items
     </Typography>
-      {data.items.map(item => {
-        return (
-          <Grid className={classes.cardcontainer} key={item.id} item xs={8}>
-            <ItemCard
-              item={item} />
-          </Grid>
-        )
-      })}
+      <Grid className={classes.cardcontainer} item xs={12}>
+        {data.items.map(item => {
+          return (
+            <div className={classes.card}>
+              <ItemCard
+                key={item.id}
+                item={item} />
+            </div>
+          )
+        })}
+      </Grid>
+
     </div>
   );
 };

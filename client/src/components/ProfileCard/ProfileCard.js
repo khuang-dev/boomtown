@@ -10,7 +10,7 @@ import Gravatar from "react-gravatar";
 
 const useStyles = makeStyles({
     profilecontainer: {
-        padding: "0 100px",
+        padding: "0 85px",
         height: "100%",
         width: "100%",
         backgroundColor: "#212121",
@@ -29,6 +29,9 @@ const useStyles = makeStyles({
         backgroundColor: "gray"
     },
     username: {
+        color: "rgba(0, 0, 0, 0.54)",
+        fontSize: "45px",
+        transform: "translateY(-7px)"
     },
     cardtitle: {
         color: "#212121"
@@ -36,11 +39,18 @@ const useStyles = makeStyles({
     carddescription: {
         color: "#212121"
     },
-    itemmeta: {
-        marginTop: "30px"
+    itemcount: {
+        display: "flex",
+        marginLeft: "30px"
+    },
+    count: {
+        marginRight: "10px",
+        fontSize: "20px"
     },
     usermeta: {
-        display: "flex"
+        display: "flex",
+        marginTop: "30px",
+        marginLeft: "30px"
     },
     avatar: {
         width: "50px",
@@ -61,6 +71,12 @@ const useStyles = makeStyles({
         border: "1px solid rgba(0, 0, 0, 0.23)",
         padding: "8px 24px",
         margin: "0 0 12px 8px"
+    },
+    bio: {
+        marginLeft: "30px"
+    },
+    bold: {
+        fontWeight: "bold"
     }
 });
 
@@ -70,24 +86,25 @@ const ProfileCard = ({ user }) => {
     return (
         <div className={classes.profilecontainer}>
             <Card className={classes.profilecard}>
-                <CardActionArea>
-                    <CardContent>
-                        <div className={classes.usermeta}>
-                            <Gravatar email={user && user.email} size={100} rating="pg" default="monsterid" className={classes.avatar} />
-                            <Typography className={classes.username}>
-                                {user && user.fullname}
-                            </Typography>
-                        </div>
+                <CardContent>
+                    <div className={classes.usermeta}>
+                        <Gravatar email={user && user.email} size={100} rating="pg" default="monsterid" className={classes.avatar} />
+                        <Typography className={classes.username}>
+                            {user && user.fullname}
+                        </Typography>
+                    </div>
 
-                        <div>
-                            <Typography>
-                                <span class={classes.itemcount}>{user.items.length}</span> Item shared
-                                    <span classes={classes.itemcount}>{user.borrowed.length}</span> Item borrowed
+                    <div className={classes.itemcount}>
+                        <Typography className={classes.count}>
+                            <span className={classes.bold}>{user.items.length}</span> Item shared
                             </Typography>
-                            <Typography>"{user.bio ? user.bio : "no bio provided."}"</Typography>
-                        </div>
-                    </CardContent>
-                </CardActionArea>
+                        <Typography className={classes.count}>
+                            <span className={classes.bold}>{user.borrowed.length}</span> Item borrowed
+                            </Typography>
+                    </div>
+                    <Typography className={classes.bio}>"{user.bio ? user.bio : "no bio provided."}"</Typography>
+
+                </CardContent>
             </Card>
         </div>
     )
