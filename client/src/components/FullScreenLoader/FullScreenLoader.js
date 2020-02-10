@@ -15,9 +15,6 @@ function CircularIndeterminate({ classes }) {
                 "For it is in giving that we receive."
             </Typography>
         </div>
-
-
-
     );
 }
 

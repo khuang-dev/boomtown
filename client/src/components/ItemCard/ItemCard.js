@@ -1,79 +1,22 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 import Gravatar from "react-gravatar";
 import { Link } from 'react-router-dom';
 import { ViewerContext } from "../../context/ViewerProvider";
+import {
+    withStyles,
+    Card,
+    CardActionArea,
+    CardActions,
+    CardContent,
+    CardMedia,
+    Button,
+    Typography
+} from '@material-ui/core/';
 
-const useStyles = makeStyles({
-    card: {
-        minWidth: 400,
-        height: 550,
-        margin: "10px 10px 10px 10px",
-        backgroundColor: "#fff",
-        borderRadius: "0",
-    },
-    cardcontent: {
-        background: "#fff",
-    },
-    media: {
-        height: 250,
-        backgroundColor: "gray"
-    },
-    username: {
-    },
-    cardtitle: {
-        color: "#212121",
-        fontSize: "25px"
-    },
-    carddescription: {
-        color: "#212121",
-        fontSize: "14px"
-    },
-    itemmeta: {
-        marginTop: "30px"
-    },
-    usermeta: {
-        display: "flex"
-    },
-    avatar: {
-        width: "50px",
-        height: "50px",
-        marginRight: "20px",
-        borderRadius: "50px"
-    },
-    day: {
-        color: "rgba(0, 0, 0, 0.5)",
-        fontSize: "14px"
-    },
-    tags: {
-        color: "rgba(0, 0, 0, 0.5)",
-        fontSize: "14px",
-        margin: "10px 0"
-    },
-    tagscontainer: {
-        display: "flex",
-    },
-    button: {
-        color: "#212121",
-        border: "1px solid rgba(0, 0, 0, 0.23)",
-        padding: "8px 24px",
-        margin: "0 0 12px 8px"
-    }
-});
 
-const ItemCard = ({ item }) => {
-    const classes = useStyles();
-    console.log(item)
+const ItemCard = ({ item, classes }) => {
     let daysAgo = moment(item && item.created).fromNow()
     return (
         <ViewerContext.Consumer>

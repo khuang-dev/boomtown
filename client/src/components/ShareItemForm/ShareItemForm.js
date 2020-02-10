@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import styles from './styles';
-import { withStyles } from '@material-ui/core/';
 import { Form, Field, FormSpy } from 'react-final-form';
 import { HomeOutlined } from '@material-ui/icons/'
-// import SportsBasketballIcon from '@material-ui/icons/SportsBasketball';
 import { BookOutlined } from '@material-ui/icons/'
 import { MusicNoteOutlined } from '@material-ui/icons/'
 import { DevicesOutlined } from '@material-ui/icons/'
@@ -16,6 +11,12 @@ import { ItemPreviewContext } from '../../context/ItemPreviewProvider'
 import { ADD_ITEM_MUTATION } from '../../apollo/queries';
 import { Mutation } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
+import {
+  withStyles,
+  Button,
+  TextField,
+  Typography
+} from '@material-ui/core/';
 
 
 
@@ -23,13 +24,13 @@ class ShareForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
     }
   }
 
   onSubmit = (values) => {
     console.log(values);
   };
+
   validate = (values) => {
     console.log(values)
     const errors = {}; //meta access here
@@ -39,9 +40,6 @@ class ShareForm extends Component {
     if (!values.description) {
       errors.description = 'Required*'
     }
-    // if (values.tags.length === 0) {
-    //   errors.description = 'Required*'
-    // }
     return errors;
   };
 
@@ -51,6 +49,7 @@ class ShareForm extends Component {
       .filter(e => e)
       .join(", ");
   };
+
   applyTags = (tags, allTags) => {
     return tags.map(tag => {
       const updatedTag = { title: tag };
@@ -62,12 +61,14 @@ class ShareForm extends Component {
       return updatedTag;
     });
   };
+
   dispatchUpdate = (values, allTags, updatePreview) => {
     updatePreview({
       ...values,
       tags: this.applyTags(values.tags || [], allTags)
     });
   };
+
   render() {
     const { classes } = this.props;
     return (
@@ -141,8 +142,8 @@ class ShareForm extends Component {
                             </label>
                             <label className={classes.tagIcons}>
                               <Field name="tags" component="input" type="checkbox" value="sporting goods" />
-                              Sporting Goods
-                          </label>
+                              Sporting Goods <HomeOutlined />
+                            </label>
                             <label className={classes.tagIcons}>
                               <Field name="tags" component="input" type="checkbox" value="recreational equipment" />
                               Recreational Equipment <InsertEmoticonOutlined />
