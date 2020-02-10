@@ -14,9 +14,9 @@ import {
   VIEWER_QUERY
 } from '../../apollo/queries';
 import { Mutation, graphql, compose } from 'react-apollo';
-
-
 import styles from './styles';
+import PropTypes from 'prop-types';
+
 
 class AccountForm extends Component {
   constructor(props) {
@@ -156,6 +156,12 @@ class AccountForm extends Component {
 }
 
 const refetchQueries = [{ query: VIEWER_QUERY }];
+
+AccountForm.propTypes = {
+  signupMutation: PropTypes.func.isRequired,
+  loginMutation: PropTypes.func.isRequired,
+  classes: PropTypes.object
+}; 
 
 export default compose(
   graphql(SIGNUP_MUTATION, {

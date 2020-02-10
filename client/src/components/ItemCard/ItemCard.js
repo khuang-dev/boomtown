@@ -14,6 +14,7 @@ import {
     Button,
     Typography
 } from '@material-ui/core/';
+import PropTypes from 'prop-types';
 
 
 const ItemCard = ({ item, classes }) => {
@@ -69,5 +70,8 @@ const ItemCard = ({ item, classes }) => {
         </ViewerContext.Consumer>
     )
 };
-
+ItemCard.propTypes = {
+    item: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
+};
 export default withStyles(styles)(ItemCard);

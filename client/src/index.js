@@ -9,16 +9,6 @@ import AppRoutes from './routes';
 import registerServiceWorker from "./registerServiceWorker";
 import theme from "./theme";
 import ViewerProvider from './context/ViewerProvider'
-
-/**
- * @TODO: Wrap your app with the Viewer Context
- *
- *
- * Below in your <App />, wrap the <ViewerProvider /> component around
- * the <BrowserRouter /> component so the router is aware of whether a
- * user is currently logged in and who that user is.
- */
-
 import "./index.css";
 import ItemPreviewProvider from "./context/ItemPreviewProvider";
 

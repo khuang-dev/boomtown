@@ -7,9 +7,14 @@ import {
     CardContent,
     Typography
 } from '@material-ui/core/';
+import PropTypes from 'prop-types';
 
 
 const ProfileCard = ({ user, classes }) => {
+    ProfileCard.propTypes = {
+        user: PropTypes.object.isRequired,
+        classes: PropTypes.object.isRequired,
+    };
     return (
         <div className={classes.profilecontainer}>
             <Card className={classes.profilecard}>

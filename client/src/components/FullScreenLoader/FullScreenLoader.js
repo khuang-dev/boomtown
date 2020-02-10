@@ -3,7 +3,11 @@ import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import styles from './styles'
 import { Typography } from '@material-ui/core/'
+import PropTypes from 'prop-types';
 
+CircularIndeterminate.propTypes = {
+    classes: PropTypes.object.isRequired
+};
 
 function CircularIndeterminate({ classes }) {
     return (

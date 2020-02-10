@@ -15,11 +15,10 @@ import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import { Mutation } from 'react-apollo';
 import { LOGOUT_MUTATION, VIEWER_QUERY } from '../apollo/queries';
 import styles from './styles'
+import PropTypes from 'prop-types';
 
 
 const NavBar = ({ classes, history }) => {
-
-
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -85,9 +84,11 @@ const NavBar = ({ classes, history }) => {
             )}
         </Mutation>
     )
-
 }
 
-
+NavBar.propTypes = {
+    classes: PropTypes.object.isRequired,
+    // logoutMutation: PropTypes.func.isRequired ??
+};
 
 export default withRouter(withStyles(styles)(NavBar));

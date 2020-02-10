@@ -1,5 +1,4 @@
 import React from 'react'
-import Gravatar from "react-gravatar";
 export const ItemPreviewContext = React.createContext();
 
 const initialState = {
@@ -20,7 +19,6 @@ const ItemPreviewProvider = (props) => {
     const resetPreview = () => {
         setItem(initialState);
     }
-    // console.log(item)
     return (
         <ItemPreviewContext.Provider
             value={{

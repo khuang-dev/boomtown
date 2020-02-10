@@ -7,8 +7,7 @@ import {
   Grid,
   Typography
 } from '@material-ui/core/';
-
-
+import PropTypes from 'prop-types';
 
 
 const Profile = ({ data, classes }) => {
@@ -21,9 +20,8 @@ const Profile = ({ data, classes }) => {
       <Grid className={classes.cardcontainer} item xs={12}>
         {data.items.map(item => {
           return (
-            <div className={classes.card}>
+            <div key={item.id} className={classes.card}>
               <ItemCard
-                key={item.id}
                 item={item} />
             </div>
           )
@@ -32,6 +30,10 @@ const Profile = ({ data, classes }) => {
 
     </div>
   );
+};
+Profile.propTypes = {
+  data: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Profile);

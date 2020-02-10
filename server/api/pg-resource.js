@@ -48,8 +48,6 @@ module.exports = postgres => {
         };
 
         const user = await postgres.query(findUserQuery);
-        // if (!user) throw "User is not found";
-        // if (!password) throw "User or Password incorrect";
         return user.rows[0];
       } catch (e) {
         throw "User is not found";

@@ -17,6 +17,7 @@ import {
   TextField,
   Typography
 } from '@material-ui/core/';
+import PropTypes from 'prop-types';
 
 
 
@@ -28,11 +29,9 @@ class ShareForm extends Component {
   }
 
   onSubmit = (values) => {
-    console.log(values);
   };
 
   validate = (values) => {
-    console.log(values)
     const errors = {}; //meta access here
     if (!values.title) {
       errors.title = 'Required*'
@@ -170,4 +169,11 @@ class ShareForm extends Component {
     )
   }
 }
+ShareForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+  // generateTagsText: PropTypes.func.isRequired, ??
+  // updatePreview: PropTypes.func.isRequired, ??
+  // ApplyTags: PropTypes.func.isRequired, ??
+  tags: PropTypes.array.isRequired
+};
 export default withRouter(withStyles(styles)(ShareForm));

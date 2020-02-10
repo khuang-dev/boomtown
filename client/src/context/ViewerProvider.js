@@ -17,13 +17,6 @@ const ViewerProvider = ({ children }) => {
       }}
     </Query>
   )
-  /**
-   * @TODO: Create the ViewerContext provider to supply information about
-   * the currently logged-in user throughout the application.
-   *
-   * Replace the <Fragment /> component with an Apollo <Query /> component
-   * with a <ViewerContext.Provider /> nested inside that wrap the children.
-   */
 };
 
 export { ViewerContext };

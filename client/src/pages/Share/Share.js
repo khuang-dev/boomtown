@@ -6,11 +6,11 @@ import {
   withStyles,
   Grid
 } from '@material-ui/core/';
+import PropTypes from 'prop-types';
 
 
 
 const Share = ({ tags, classes }) => {
-  console.log(tags)
   return (
     <Grid className={classes.shareformcontainer}>
       <ShareItemPreview className={classes.preview} />
@@ -18,5 +18,8 @@ const Share = ({ tags, classes }) => {
     </Grid>
   );
 };
-
+Share.propTypes = {
+  // tags: PropTypes.object.isRequired, ??
+  classes: PropTypes.object.isRequired
+};
 export default withStyles(styles)(Share);
