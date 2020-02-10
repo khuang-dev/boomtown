@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom'
 const useStyles = makeStyles({
     card: {
         minWidth: 400,
-        height: 500,
+        height: 550,
         margin: "10px 10px 10px 10px",
         backgroundColor: "#fff",
         borderRadius: "0",
@@ -31,10 +31,12 @@ const useStyles = makeStyles({
     username: {
     },
     cardtitle: {
-        color: "#212121"
+        color: "#212121",
+        fontSize: "25px"
     },
     carddescription: {
-        color: "#212121"
+        color: "#212121",
+        fontSize: "14px"
     },
     itemmeta: {
         marginTop: "30px"
@@ -55,6 +57,7 @@ const useStyles = makeStyles({
     tags: {
         color: "rgba(0, 0, 0, 0.5)",
         fontSize: "14px",
+        margin: "10px 0"
     },
     tagscontainer: {
         display: "flex",
@@ -99,13 +102,11 @@ const ItemCard = ({ item }) => {
                                 {item && item.title}
                             </Typography>
                             <div className={classes.tagscontainer}>
-                                {item && item.tags.map((tag) =>
-                                    <Typography key={tag.id} className={classes.tags}>
-                                        {tag.title}
-                                    </Typography>
-                                )}
+                                <Typography className={classes.tags}>
+                                    {item && item.tags.map((tag) => tag.title).join(", ")}
+                                </Typography>
                             </div>
-                            <Typography className={classes.cardtitle}>
+                            <Typography className={classes.carddescription}>
                                 {item && item.description}
                             </Typography>
                         </div>
