@@ -1,8 +1,10 @@
 import React from 'react'
+import Gravatar from "react-gravatar";
 export const ItemPreviewContext = React.createContext();
 
 const initialState = {
     imageurl: 'http://via.placeholder.com/350x250?text=Please select an image',
+    Gravatar: {},
     itemowner: {},
     created: new Date(),
     title: 'preview of title',

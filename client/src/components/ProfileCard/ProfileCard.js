@@ -13,11 +13,12 @@ const useStyles = makeStyles({
         padding: "0 100px",
         height: "100%",
         width: "100%",
+        backgroundColor: "#212121",
+        paddingTop: "150px",
     },
     profilecard: {
         minWidth: 400,
         height: 250,
-        marginTop: "150px",
         borderRadius: "0",
     },
     cardcontent: {
@@ -73,11 +74,17 @@ const ProfileCard = ({ user }) => {
                     <CardContent>
                         <div className={classes.usermeta}>
                             <Gravatar email={user && user.email} size={100} rating="pg" default="monsterid" className={classes.avatar} />
-                            <div>
-                                <Typography className={classes.username}>
-                                    {user && user.fullname}
-                                </Typography>
-                            </div>
+                            <Typography className={classes.username}>
+                                {user && user.fullname}
+                            </Typography>
+                        </div>
+
+                        <div>
+                            <Typography>
+                                <span class={classes.itemcount}>{user.items.length}</span> Item shared
+                                    <span classes={classes.itemcount}>{user.borrowed.length}</span> Item borrowed
+                            </Typography>
+                            <Typography>"{user.bio ? user.bio : "no bio provided."}"</Typography>
                         </div>
                     </CardContent>
                 </CardActionArea>
